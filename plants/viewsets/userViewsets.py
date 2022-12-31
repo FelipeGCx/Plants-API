@@ -1,6 +1,6 @@
 from plants.models.user import User
 from rest_framework import viewsets, permissions
-from plants.serializers.userSerializers import UserSerializer
+from plants.serializers.userSerializer import UserSerializer
 
 class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()

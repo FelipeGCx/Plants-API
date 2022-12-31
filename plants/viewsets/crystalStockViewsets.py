@@ -1,6 +1,6 @@
 from plants.models.crystalStock import CrystalStock
 from rest_framework import viewsets, permissions
-from plants.serializers.crystalStockSerializers import CrystalStockSerializer
+from plants.serializers.crystalStockSerializer import CrystalStockSerializer
 
 class CrystalStockViewSet(viewsets.ModelViewSet):
     queryset = CrystalStock.objects.all()

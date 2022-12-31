@@ -1,6 +1,6 @@
 from plants.models.plantStock import PlantStock
 from rest_framework import viewsets, permissions
-from plants.serializers.plantStockSerializers import PlantStockSerializer
+from plants.serializers.plantStockSerializer import PlantStockSerializer
 
 class PlantStockViewSet(viewsets.ModelViewSet):
     queryset = PlantStock.objects.all()

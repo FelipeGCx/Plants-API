@@ -18,11 +18,5 @@ from django.urls import path, include
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("",include("plants.controllers.plantController")),
-    path("",include("plants.controllers.plantFavoriteController")),
-    path("",include("plants.controllers.plantStockController")),
-    path("",include("plants.controllers.crystalController")),
-    path("",include("plants.controllers.crystalFavoriteController")),
-    path("",include("plants.controllers.crystalStockController")),
-    path("",include("plants.controllers.userController"))
+    path("",include("plants.controller")),
 ]
