@@ -3,8 +3,18 @@ from plants.models.plant import Plant
 from rest_framework import viewsets, permissions
 from rest_framework.response import Response
 from plants.serializers.plantSerializer import PlantSerializer
+import plants.rolePermission as rolePermision
 
 class PlantViewSet(viewsets.ModelViewSet):
+    queryset = Plant.objects.all()
+    serializer_class = PlantSerializer
+    
+    def get_permissions(self):
+        if self.action in ['create', 'update']:
+            permission_classes = [permissions.IsAuthenticated, rolePermision.IsAdmin]
+        else:
+            permission_classes = [permissions.AllowAny]
+        return [permission() for permission in permission_classes]
     
     lookup_field = 'param'
     
@@ -38,6 +48,3 @@ class PlantViewSet(viewsets.ModelViewSet):
         
         return queryset
     
-    queryset = Plant.objects.all()
-    permission_classes = [permissions.AllowAny]
-    serializer_class = PlantSerializer

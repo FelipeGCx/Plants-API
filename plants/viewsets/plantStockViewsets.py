@@ -1,25 +1,32 @@
-from django.shortcuts import get_object_or_404
-from plants.models.plantStock import PlantStock
 from plants.models.plant import Plant
-from rest_framework import viewsets, permissions
-from rest_framework.response import Response
+from plants.models.plantStock import PlantStock
 from plants.serializers.plantStockSerializer import PlantStockSerializer
 from plants.serializers.plantSerializer import PlantSerializer
+from rest_framework import viewsets, permissions
+from rest_framework.response import Response
 from rest_framework.pagination import PageNumberPagination
+from django.shortcuts import get_object_or_404
+import plants.rolePermission as rolePermision
 
 class MyPagination(PageNumberPagination):
-    page_size = 10
+    page_size = 30
     page_size_query_param = 'page_size'
     max_page_size = 100
 
 class PlantStockViewSet(viewsets.ModelViewSet):
     pagination_class = MyPagination
     queryset = PlantStock.objects.all()
-    permission_classes = [permissions.AllowAny]
     serializer_class = PlantStockSerializer
+
+    def get_permissions(self):
+        if self.action in ['create', 'update']:
+            permission_classes = [permissions.IsAuthenticated, rolePermision.IsAdmin]
+        else:
+            permission_classes = [permissions.AllowAny]
+        return [permission() for permission in permission_classes]
     
     lookup_field = 'param'
-
+        
     def retrieve(self, request, param=None):
         queryset = Plant.objects.all()
         if param.isnumeric():
@@ -31,7 +38,6 @@ class PlantStockViewSet(viewsets.ModelViewSet):
 
     def get_queryset(self):
         queryset = Plant.objects.all()
-
         name = self.request.query_params.get('name', None)
         if name is not None:
             queryset = queryset.filter(name__contains = name) or queryset.filter(other_names__contains = name) 

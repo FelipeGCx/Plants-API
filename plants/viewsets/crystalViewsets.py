@@ -3,9 +3,18 @@ from plants.models.crystal import Crystal
 from rest_framework import viewsets, permissions
 from rest_framework.response import Response
 from plants.serializers.crystalSerializer import CrystalSerializer
-
+import plants.rolePermission as rolePermision
 
 class CrystalViewSet(viewsets.ModelViewSet):
+    queryset = Crystal.objects.all()
+    serializer_class = CrystalSerializer
+    
+    def get_permissions(self):
+        if self.action in ['create', 'update']:
+            permission_classes = [permissions.IsAuthenticated, rolePermision.IsAdmin]
+        else:
+            permission_classes = [permissions.AllowAny]
+        return [permission() for permission in permission_classes]
     
     lookup_field = 'param'
     
@@ -55,6 +64,3 @@ class CrystalViewSet(viewsets.ModelViewSet):
                 
         return queryset
     
-    queryset = Crystal.objects.all()
-    permission_classes = [permissions.AllowAny]
-    serializer_class = CrystalSerializer
