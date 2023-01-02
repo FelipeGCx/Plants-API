@@ -5,8 +5,18 @@ from rest_framework import viewsets, permissions
 from rest_framework.response import Response
 from plants.serializers.plantStockSerializer import PlantStockSerializer
 from plants.serializers.plantSerializer import PlantSerializer
+from rest_framework.pagination import PageNumberPagination
+
+class MyPagination(PageNumberPagination):
+    page_size = 10
+    page_size_query_param = 'page_size'
+    max_page_size = 100
 
 class PlantStockViewSet(viewsets.ModelViewSet):
+    pagination_class = MyPagination
+    queryset = PlantStock.objects.all()
+    permission_classes = [permissions.AllowAny]
+    serializer_class = PlantStockSerializer
     
     lookup_field = 'param'
 
@@ -40,6 +50,4 @@ class PlantStockViewSet(viewsets.ModelViewSet):
         
         return queryset
     
-    queryset = PlantStock.objects.all()
-    permission_classes = [permissions.AllowAny]
-    serializer_class = PlantStockSerializer
+  
