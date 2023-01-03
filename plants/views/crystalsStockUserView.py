@@ -3,14 +3,16 @@ from plants.models.crystalStock import CrystalStock
 from plants.models.crystalFavorite import CrystalFavorite
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from rest_framework.pagination import PageNumberPagination
+import math
 
 class CrystalStockUserView(APIView):
-    pagination_class = PageNumberPagination
-    pagination_class.page_size = 10
-    pagination_class.max_page_size = 50
+    page_size = 30
+    page = 1
     
     def get(self, request, user=None, format=None):
+        page = int(request.query_params.get('page', None)) if request.query_params.get('page', None) is not None else self.page
+        page_size = int(request.query_params.get('page_size', None)) if request.query_params.get('page_size', None) is not None else self.page_size
+            
         crystalStock = CrystalStock.objects.all()
         data = []
         for item in crystalStock:
@@ -35,6 +37,16 @@ class CrystalStockUserView(APIView):
                 "favorite": True if fav else False  
             }
             data.append(val)
-        paginated_queryset = self.paginate_queryset(data)
-        return self.get_paginated_response(paginated_queryset)
-        # return Response(data, status=200)
+        total_items = len(data)
+        total_pages = math.ceil(total_items/page_size)
+        l_item = page*page_size
+        f_item = l_item - page_size
+        
+        paginated_data = data[f_item:l_item]
+        final_data = {
+            "totalItems": total_items,
+            "totalPages": total_pages,
+            "page": page,
+            "results": paginated_data
+        }
+        return Response(final_data, status=200)
