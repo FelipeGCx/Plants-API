@@ -1,14 +1,16 @@
 from rest_framework import serializers
-from plants.models.crystalFavorite import CystalFavorite
+from plants.models.crystal import Crystal
+from plants.models.crystalFavorite import CrystalFavorite
+from plants.serializers.crystalSerializer import CrystalSerializer
 
-class CystalFavoriteSerializer(serializers.ModelSerializer):
+class CrystalFavoriteSerializer(serializers.ModelSerializer):
+    crystal = serializers.SerializerMethodField()
     class Meta:
-        model= CystalFavorite
-        fields = ["id","id_user","id_crystal"]
+        model= CrystalFavorite
+        fields = ["id","id_user","id_crystal","crystal"]
         
-    def to_representation(self, obj):
-        crystalFavorite = CystalFavorite.objects.get(id=obj.id)
-        return {
-            "id_user": crystalFavorite.id_user,
-            "id_crystal": crystalFavorite.id_crystal,
-        }
+    def get_crystal(self, obj):
+        id_crystal = int(str(obj.id_crystal).replace("CrystalStock object (","").replace(")","")) 
+        crystals = Crystal.objects.get(id=id_crystal)
+        serializer = CrystalSerializer(crystals, many=False)
+        return serializer.data

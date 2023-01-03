@@ -1,5 +1,5 @@
 from .crystal import Crystal
-from .crystalFavorite import CystalFavorite
+from .crystalFavorite import CrystalFavorite
 from .crystalStock import CrystalStock
 from .orderPurchase import OrderPurchase
 from .orderSale import OrderSale

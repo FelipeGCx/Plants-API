@@ -1,4 +1,4 @@
-from .crystalFavoriteSerializer import CystalFavoriteSerializer
+from .crystalFavoriteSerializer import CrystalFavoriteSerializer
 from .crystalSerializer import CrystalSerializer
 from .crystalStockSerializer import CrystalStockSerializer
 from .orderPurchaseSerializer import OrderPurchaseSerializer

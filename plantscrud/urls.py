@@ -24,5 +24,6 @@ urlpatterns = [
     path('api/v1/user/login/', TokenObtainPairView.as_view(),name="token"),
     path('api/v1/user/refresh/', TokenRefreshView.as_view(), name="refresh"),
     path('api/v1/user/verify/', views.VerifyTokenView.as_view(), name="verify"),
+    path('api/v1/crystalis/<int:user>/', views.CrystalStockUserView.as_view(), name="test"),
     path("",include("plants.controller")),
 ]
