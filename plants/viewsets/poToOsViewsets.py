@@ -8,7 +8,7 @@ class ProductOrderToOrderSaleViewSet(viewsets.ModelViewSet):
     serializer_class = ProductOrderToOrderSaleSerializer
     
     def get_permissions(self):
-        if self.action in ['create', 'update', 'list']:
+        if self.action in ['create', 'update', 'list','destroy']:
             permission_classes = [permissions.IsAuthenticated, rolePermision.IsAdmin]
         else:
             permission_classes = [permissions.AllowAny]

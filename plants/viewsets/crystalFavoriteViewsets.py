@@ -11,7 +11,7 @@ class CrystalFavoriteViewSet(viewsets.ModelViewSet):
 
     def get_permissions(self):
         if self.action in ['create', 'update']:
-            permission_classes = [permissions.IsAuthenticated, rolePermision.IsAdmin]
+            permission_classes = [permissions.IsAuthenticated]
         else:
             permission_classes = [permissions.AllowAny]
         return [permission() for permission in permission_classes]

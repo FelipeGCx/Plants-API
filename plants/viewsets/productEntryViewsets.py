@@ -8,7 +8,7 @@ class ProductEntryViewSet(viewsets.ModelViewSet):
     serializer_class = ProductEntrySerializer
     
     def get_permissions(self):
-        if self.action in ['create', 'update', 'list']:
+        if self.action in ['create', 'update', 'list','destroy']:
             permission_classes = [permissions.IsAuthenticated, rolePermision.IsAdmin]
         else:
             permission_classes = [permissions.AllowAny]

@@ -8,7 +8,7 @@ class PotViewSet(viewsets.ModelViewSet):
     serializer_class = PotSerializer
     
     def get_permissions(self):
-        if self.action in ['create', 'update']:
+        if self.action in ['create', 'update','destroy']:
             permission_classes = [permissions.IsAuthenticated, rolePermision.IsAdmin]
         else:
             permission_classes = [permissions.AllowAny]
