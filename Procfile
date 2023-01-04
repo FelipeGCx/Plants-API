@@ -1,0 +1,1 @@
+web: gunicorn plantscrud.wsgi --log-file -
