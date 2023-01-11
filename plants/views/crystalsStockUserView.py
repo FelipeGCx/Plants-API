@@ -3,6 +3,7 @@ from plants.models.crystalStock import CrystalStock
 from plants.models.crystalFavorite import CrystalFavorite
 from rest_framework.response import Response
 from rest_framework.views import APIView
+
 import math
 
 class CrystalStockUserView(APIView):
@@ -14,6 +15,39 @@ class CrystalStockUserView(APIView):
         page_size = int(request.query_params.get('page_size', None)) if request.query_params.get('page_size', None) is not None else self.page_size
             
         crystalStock = CrystalStock.objects.all()
+        
+        name = self.request.query_params.get('name', None)
+        if name is not None:
+            crystalStock = crystalStock.filter(name__contains = name) 
+            
+        vibration = self.request.query_params.get('vibration', None)
+        if vibration is not None:
+            crystalStock = crystalStock.filter(vibration = vibration) 
+            
+        zodiac = self.request.query_params.get('zodiac', None)
+        if zodiac is not None:
+            zodiac = zodiac.split(",")
+            for z in zodiac:
+                crystalStock =  crystalStock.filter(zodiac__contains=z)
+        
+        planets = self.request.query_params.get('planets', None)
+        if planets is not None:
+            planets = planets.split(",")
+            for p in planets:
+                crystalStock =  crystalStock.filter(planets__contains=p)
+                
+        chakras = self.request.query_params.get('chakras', None)
+        if chakras is not None:
+            chakras = chakras.split(",")
+            for c in chakras:
+                crystalStock =  crystalStock.filter(chakras__contains=c)
+                
+        elements = self.request.query_params.get('elements', None)
+        if elements is not None:
+            elements = elements.split(",")
+            for e in elements:
+                crystalStock =  crystalStock.filter(elements__contains=e)
+                
         data = []
         for item in crystalStock:
             crystal = Crystal.objects.get(id=item.id)
@@ -50,3 +84,4 @@ class CrystalStockUserView(APIView):
             "results": paginated_data
         }
         return Response(final_data, status=200)
+
