@@ -28,12 +28,12 @@ class PlantStockViewSet(viewsets.ModelViewSet):
     lookup_field = 'param'
         
     def retrieve(self, request, param=None):
-        queryset = Plant.objects.all()
+        queryset = PlantStock.objects.all()
         if param.isnumeric():
-            crystal = get_object_or_404(queryset, id=param)
+            plant = get_object_or_404(queryset, id=param)
         else:
-            crystal = get_object_or_404(queryset, name=param)
-        serializer = PlantSerializer(crystal)
+            plant = get_object_or_404(queryset, name=param)
+        serializer = PlantStockSerializer(plant)
         return Response(serializer.data)
 
     def get_queryset(self):
@@ -54,6 +54,6 @@ class PlantStockViewSet(viewsets.ModelViewSet):
         if flowering is not None:
             queryset = queryset.filter(flowering = flowering) 
         
-        return queryset
+        return  queryset
     
   
