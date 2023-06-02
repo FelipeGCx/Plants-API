@@ -19,8 +19,8 @@ class CrystalSerializer(serializers.ModelSerializer):
             "planets": [p.removeprefix(" ") for p in crystal.planets.split(",")],
             "elements": [e.removeprefix(" ") for e in crystal.elements.split(",")],
             "chakras": [c.removeprefix(" ") for c in crystal.chakras.split(",")],
-            "image_crystal": crystal.image_crystal,
-            "image_gemstone": crystal.image_gemstone
+            "imageCrystal": crystal.image_crystal,
+            "imageGemstone": crystal.image_gemstone
         }
             
         
