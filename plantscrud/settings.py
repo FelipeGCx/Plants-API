@@ -11,18 +11,20 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
 from datetime import timedelta
+import os
 from pathlib import Path
+from dotenv import load_dotenv
+load_dotenv()
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-x#=31sq+&o@e^tjr6985jn1)i_7ne2--&6$5g)utmvwb@$7mz1"
+SECRET_KEY = os.getenv("Django_secret")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -136,14 +138,13 @@ WSGI_APPLICATION = "plantscrud.wsgi.application"
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'railway',
-        'USER': 'postgres',
-        'PASSWORD': '591w2gsDASiuUk3VAdOf',
-        'HOST': 'containers-us-west-34.railway.app',
-        'PORT': '7326',
+        'NAME': os.getenv('DB_DATABASE'),
+        'USER': os.getenv('DB_USER'),
+        'PASSWORD': os.getenv('DB_PASSWORD'),
+        'HOST': os.getenv('DB_HOST'),
+        'PORT': os.getenv('DB_PORT'),
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
