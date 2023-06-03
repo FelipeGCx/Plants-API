@@ -90,11 +90,13 @@ class PlantsStockUserView(APIView):
                                                     
         flowering = self.request.query_params.get('flowering', None)
         if flowering is not None:
+            flowering = eval(flowering.capitalize())
             # plantisStock = plantisStock.filter(flowering = flowering)
             plantisStock = list(filter(lambda x: x.flowering == flowering, plantisStock))
             
         inside = self.request.query_params.get('inside', None)
         if inside is not None:
+            inside = eval(inside.capitalize())
             # plantisStock = plantisStock.filter(inside = inside)
             plantisStock = list(filter(lambda x: x.inside == inside, plantisStock))
             
