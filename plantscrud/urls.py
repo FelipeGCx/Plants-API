@@ -26,5 +26,6 @@ urlpatterns = [
     path('api/v1/user/verify/', views.VerifyTokenView.as_view(), name="verify"),
     path('api/v1/crystalis/<int:user>/', views.CrystalStockUserView.as_view(), name="crystalsFavs"),
     path('api/v1/plantis/<int:user>/', views.PlantsStockUserView.as_view(), name="plantsFavs"),
+    path('api/v1/species/', views.SpeciesView.as_view(), name="species"),
     path("",include("plants.controller")),
 ]
