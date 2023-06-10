@@ -4,4 +4,4 @@ from plants.models.pot import Pot
 class PotSerializer(serializers.ModelSerializer):
     class Meta:
         model = Pot
-        fields = ["id", "name", "price", "image", "quantity"]
+        fields = ["id", "name", "price", "image", "render", "quantity"]
