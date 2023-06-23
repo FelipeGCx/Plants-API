@@ -69,10 +69,13 @@ class CrystalStockUserView(APIView):
             crystalStock = list(
                 filter(lambda x: name.lower() in x.name.lower(), crystalisStock))
 
-        vibration = self.request.query_params.get('vibration', None)
-        if vibration is not None:
-            crystalisStock = list(filter(lambda x: int(vibration) in x.vibration, crystalisStock)
-                                  )
+        vibration_first = self.request.query_params.get('vibrationFirst', None)
+        if vibration_first is not None:
+            vibration_second = self.request.query_params.get(
+                'vibrationSecond', None)
+            if vibration_second is not None:
+                crystalisStock = list(filter(lambda x: x.price >= int(
+                    vibration_first) and x.price <= int(vibration_second), crystalisStock))
 
         zodiac = self.request.query_params.get('zodiac', None)
         if zodiac is not None:
