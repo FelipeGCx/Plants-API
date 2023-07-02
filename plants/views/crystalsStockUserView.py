@@ -69,6 +69,11 @@ class CrystalStockUserView(APIView):
             crystalisStock = list(
                 filter(lambda x: name.lower() in x.name.lower(), crystalisStock))
 
+        named = self.request.query_params.get('named', None)
+        if named is not None:
+            crystalisStock = list(sorted(crystalisStock, key=lambda x: named.lower() in x.name.lower(), reverse=True))
+
+
         vibration_first = self.request.query_params.get('vibrationFirst', None)
         if vibration_first is not None:
             vibration_second = self.request.query_params.get(
