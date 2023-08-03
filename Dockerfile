@@ -1,5 +1,5 @@
 # Utilizamos una imagen base de Python para Django
-FROM python:3.10.12
+FROM python:3.10
 
 # Establecemos el directorio de trabajo en /app
 WORKDIR /app
