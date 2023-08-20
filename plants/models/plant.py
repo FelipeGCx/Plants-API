@@ -16,4 +16,4 @@ class Plant(models.Model):
     image_front = models.TextField(default="")
     render = models.TextField(default="")
     created_at = models.DateField(auto_now_add=True)
-    inside = models.TextField(default="inside")
+    zone = models.TextField(default="inside")
