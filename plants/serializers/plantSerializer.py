@@ -4,7 +4,7 @@ from plants.models.plant import Plant
 class PlantSerializer(serializers.ModelSerializer):
     class Meta:
         model= Plant
-        fields = ["id","name","other_names","description","species","group","light","irrigation","temperature","precautions","flowering","size","image_front","render","created_at","inside"]
+        fields = ["__all__"]
         read_only_field = ("created_at",)
         
     def to_representation(self, obj):
@@ -25,5 +25,5 @@ class PlantSerializer(serializers.ModelSerializer):
             "imageFront": plant.image_front,
             "render": plant.render,
             "createdAt": plant.created_at,
-            "inside": plant.inside
+            "zone": plant.zone
         }
