@@ -15,17 +15,25 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from rest_framework_simplejwt.views import (TokenObtainPairView, TokenRefreshView)
+from rest_framework_simplejwt.views import (
+    TokenObtainPairView, TokenRefreshView)
 from plants import views
 
-
+version = 'api/v1/'
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path('api/v1/user/login/', TokenObtainPairView.as_view(),name="token"),
-    path('api/v1/user/refresh/', TokenRefreshView.as_view(), name="refresh"),
-    path('api/v1/user/verify/', views.VerifyTokenView.as_view(), name="verify"),
-    path('api/v1/crystalis/<int:user>/', views.CrystalStockUserView.as_view(), name="crystalsFavs"),
-    path('api/v1/plantis/<int:user>/', views.PlantsStockUserView.as_view(), name="plantsFavs"),
-    path('api/v1/species/', views.SpeciesView.as_view(), name="species"),
-    path("",include("plants.controller")),
+    path(version +'user/login/', TokenObtainPairView.as_view(), name="token"),
+    path(version +'user/refresh/', TokenRefreshView.as_view(), name="refresh"),
+    path(version +'user/verify/', views.VerifyTokenView.as_view(), name="verify"),
+    path(version +'v/plants/', views.PlantView.as_view(), name="plants"),
+    path(version +'v/plants/<int:pk>/', views.PlantView.as_view(), name="plant"),
+    path(version +'v/plants/stock/', views.PlantStockView.as_view(), name="plantsStock"),
+    path(version +'v/plants/stock/<int:pk>/', views.PlantStockView.as_view(), name="plantStock"),
+    path(version +'v/plants/stock/user/<int:pk>/', views.PlantStockFavView.as_view(), name="plantsStockUser"),
+    path(version +'crystalis/<int:user>/',
+         views.CrystalStockUserView.as_view(), name="crystalsFavs"),
+    path(version +'plantis/<int:user>/',
+         views.PlantsStockUserView.as_view(), name="plantsFavs"),
+    path(version +'species/', views.SpeciesView.as_view(), name="species"),
+    path("", include("plants.controller")),
 ]
