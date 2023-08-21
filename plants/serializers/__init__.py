@@ -11,3 +11,4 @@ from .productEntrySerializer import ProductEntrySerializer
 from .productOrderSerializer import ProductOrderSerializer
 from .userSerializer import UserSerializer
 from .plantSerializer import PlantSerializer
+from .plantStockSerializer import PlantStockSerializer
