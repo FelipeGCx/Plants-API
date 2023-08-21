@@ -1,10 +1,10 @@
 from rest_framework import serializers
-from plants.models.plant import Plant
+from plants.models import Plant
 
 class PlantSerializer(serializers.ModelSerializer):
     class Meta:
         model= Plant
-        fields = ["__all__"]
+        fields = "__all__"
         read_only_field = ("created_at",)
         
     def to_representation(self, obj):
