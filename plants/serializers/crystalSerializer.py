@@ -4,7 +4,7 @@ from plants.models.crystal import Crystal
 class CrystalSerializer(serializers.ModelSerializer):
     class Meta:
         model= Crystal
-        fields = ["id","name","description","vibration","benefits","properties","zodiac","planets","elements","chakras","image_crystal","image_gemstone"]
+        fields = "__all__"
         
     def to_representation(self, obj):
         crystal = Crystal.objects.get(id=obj.id)
