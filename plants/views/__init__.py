@@ -5,3 +5,4 @@ from .speciesView import SpeciesView
 from .plantView import PlantView
 from .plantStockView import PlantStockView
 from .plantStockFavView import PlantStockFavView
+from .crystalView import CrystalView
