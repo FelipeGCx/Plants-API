@@ -1,2 +1,3 @@
 from .plantFilter import PlantFilter
 from .plantStockFilter import PlantStockFilter
+from .crystalFilter import CrystalFilter
