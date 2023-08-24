@@ -7,3 +7,4 @@ from .plantStockView import PlantStockView
 from .plantStockFavView import PlantStockFavView
 from .crystalView import CrystalView
 from .crystalStockView import CrystalStockView
+from .crystalStockFavView import CrystalStockFavView
