@@ -3,7 +3,7 @@ from plants.models import CrystalStock
 from plants.models import CrystalFavorite
 from plants.serializers import CrystalSerializer
 
-class CrystalStockSerializer(serializers.ModelSerializer):
+class CrystalStockFavSerializer(serializers.ModelSerializer):
     class Meta:
         model = CrystalStock
         fields = "__all__"
