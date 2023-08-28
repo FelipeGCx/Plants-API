@@ -30,6 +30,7 @@ urlpatterns = [
     path(version +'v/plants/stock/', views.PlantStockView.as_view(), name="plantsStock"),
     path(version +'v/plants/stock/<int:pk>/', views.PlantStockView.as_view(), name="plantStock"),
     path(version +'v/plants/stock/user/<int:pk>/', views.PlantStockFavView.as_view(), name="plantsStockUser"),
+    path(version +'v/plants/stock/favorite/user/<int:pk>/', views.PlantStockFavoriteView.as_view(), name="plantsStockUser"),
     path(version +'v/crystals/', views.CrystalView.as_view(), name="crystals"),
     path(version +'v/crystals/<int:pk>/', views.CrystalView.as_view(), name="crystal"),
     path(version +'v/crystals/stock', views.CrystalStockView.as_view(), name="crystalStock"),
