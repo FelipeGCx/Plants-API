@@ -14,3 +14,4 @@ from .userSerializer import UserSerializer
 from .plantSerializer import PlantSerializer
 from .plantStockSerializer import PlantStockSerializer
 from .plantStockFavSerializer import PlantStockFavSerializer
+from .plantStockFavoriteSerializer import PlantStockFavoriteSerializer
