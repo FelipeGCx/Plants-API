@@ -2,6 +2,7 @@ from .crystalFavoriteSerializer import CrystalFavoriteSerializer
 from .crystalSerializer import CrystalSerializer
 from .crystalStockSerializer import CrystalStockSerializer
 from .crystalStockFavSerializer import CrystalStockFavSerializer
+from .crystalStockFavoriteSerializer import CrystalStockFavoriteSerializer
 from .orderPurchaseSerializer import OrderPurchaseSerializer
 from .orderSaleSerializer import OrderSaleSerializer
 from .plantFavoriteSerializer import PlantFavoriteSerializer
