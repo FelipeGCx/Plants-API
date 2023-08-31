@@ -9,3 +9,4 @@ from .plantStockFavoriteView import PlantStockFavoriteView
 from .crystalView import CrystalView
 from .crystalStockView import CrystalStockView
 from .crystalStockFavView import CrystalStockFavView
+from .crystalStockFavoriteView import CrystalStockFavoriteView
